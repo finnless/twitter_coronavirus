@@ -15,6 +15,33 @@ from collections import Counter,defaultdict
 import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+
+import requests
+import time
+import math
+
+
+# Download Fonts
+# Check if the file exists in the current path
+file_name = "NotoSansCJKtc-Regular.otf"
+file_exists = os.path.exists(file_name)
+
+# If the file does not exist, download it using requests
+if not file_exists:
+    url = "https://github.com/openmaptiles/fonts/raw/master/noto-sans/NotoSansCJKtc-Regular.otf"
+    response = requests.get(url)
+
+    # Save the file to the current path
+    with open(file_name, "wb") as file:
+        file.write(response.content)
+        print(f"{file_name} downloaded successfully.")
+else:
+    print(f"{file_name} already exists in the current path.")
+
+# Apply fonts
+fprop = fm.FontProperties(fname='NotoSansCJKtc-Regular.otf')
+
 
 # open the input path
 with open(args.input_path) as f:
@@ -35,50 +62,36 @@ for k,v in items:
     vs.append(v)
     
 
-print("ks=", ks)
-print("vs=", vs)
+ks = ks[::-1][-10:]
+vs = vs[::-1][-10:]
 
 
-# Sort ks and vs in descending order based on the values in vs
-sorted_kv = sorted(zip(ks, vs), key=lambda x: x[1], reverse=True)
-sorted_ks, sorted_vs = zip(*sorted_kv)
 
-print("sorted_ks=", sorted_ks)
-print("sorted_vs=", sorted_vs)
-fig, ax = plt.subplots(figsize =(16, 9))
-ax.bar(sorted_ks, sorted_vs)
+# Plot
 
-'''
-fig, ax = plt.subplots(figsize =(16, 9))
-ax.bar(ks, vs)
-'''
+plt.bar(range(len(ks)), vs)
+plt.xticks(range(len(ks)), ks)
 
+# Set the title and labels with font properties
+plt.title(f"Use of {args.key} in 2020 by {args.input_path.split('.')[-1]}", fontproperties=fprop)
+plt.xlabel('Key')
+plt.ylabel('Tweets')
 
-import requests
-import time
-import math
+# Customize xticks and yticks
+plt.xticks(fontsize=12)
+
 
 timestamp = str(math.floor(time.time()))[-5:]
 
 filename = f'{args.input_path}_{args.key[1:]}_{timestamp}.png'
 
-print("filename=", filename)
-
 plt.savefig(filename)
 
-url = f'https://transfer.archivete.am/{filename}'
 
+# Upload Plot
+url = f'https://transfer.archivete.am/{filename}'
 
 with open(filename, 'rb') as file_data:
     response = requests.put(url, data=file_data)
 
-print(response.status_code)
 print(response.text)
-
-
-'''
-with open(filename, 'rb') as f:
-    r = requests.put(url, files={filename: f})
-
-print(r.text)
-'''
