@@ -18,6 +18,7 @@ import requests
 import time
 import math
 
+
 # load each of the input paths
 totals = {key: [] for key in args.keys}
 for path in args.input_paths:
