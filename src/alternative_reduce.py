@@ -59,6 +59,14 @@ plt.ylabel('Tweets')
 # Customize xticks and yticks
 plt.xticks(fontsize=12)
 
+# Set tick positions and labels
+selected_positions = [0, 100, 200, 300]
+selected_labels = [ds[pos] for pos in selected_positions]
+
+# Apply selected positions and labels on the x-axis
+plt.xticks(selected_positions, selected_labels)
+
+
 
 timestamp = str(math.floor(time.time()))[-5:]
 

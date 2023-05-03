@@ -108,11 +108,11 @@ $ ./src/visualize.py --input_path=reduced.country --key='#coronavirus'
 ```
 $ ./src/alternative_reduce.py --input_paths outputs/geoTwitter*.lang --keys '#doctor' '#nurse'
 ```
-<img src=img/plot_83470.png width=100% />
+<img src=img/iplot_91873.png width=100% />
 
 
 ```
 $ ./src/alternative_reduce.py --input_paths outputs/geoTwitter*.lang --keys '#coronavirus' '#corona' '#covid19'
 ```
-<img src=img/plot_83936.png width=100% />
+<img src=img/plot_92004.png width=100% />
 
