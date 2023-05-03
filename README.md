@@ -86,33 +86,33 @@ Below are the results of my analysis and the command used to generate the result
 $ ./src/visualize.py --input_path=reduced.lang --key='#코로나바이러스'
 ```
 
-<img src=reduced.lang_코로나바이러스_86082.png width=100% />
+<img src=img/reduced.lang_코로나바이러스_86082.png width=100% />
 
 
 ```
 $ ./src/visualize.py --input_path=reduced.lang --key='#coronavirus'
 ```
-<img src=reduced.lang_coronavirus_86405.png width=100% />
+<img src=img/reduced.lang_coronavirus_86405.png width=100% />
 
 ```
 $ ./src/visualize.py --input_path=reduced.country --key='#코로나바이러스'
 ```
-<img src=reduced.country_코로나바이러스_86455.png width=100% />
+<img src=img/reduced.country_코로나바이러스_86455.png width=100% />
 
 ```
 $ ./src/visualize.py --input_path=reduced.country --key='#coronavirus'
 ```
-<img src=reduced.country_coronavirus_86500.png width=100% />
+<img src=img/reduced.country_coronavirus_86500.png width=100% />
 
 
 ```
 $ ./src/alternative_reduce.py --input_paths outputs/geoTwitter*.lang --keys '#doctor' '#nurse'
 ```
-<img src=plot_83470.png width=100% />
+<img src=img/plot_83470.png width=100% />
 
 
 ```
 $ ./src/alternative_reduce.py --input_paths outputs/geoTwitter*.lang --keys '#coronavirus' '#corona' '#covid19'
 ```
-<img src=plot_83936.png width=100% />
+<img src=img/plot_83936.png width=100% />
 
